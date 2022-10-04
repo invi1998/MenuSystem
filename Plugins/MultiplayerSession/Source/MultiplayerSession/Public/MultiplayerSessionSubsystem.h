@@ -50,7 +50,7 @@ public:
 	void FindSession(int32 MaxSearchResults);
 
 	// 传入要加入的会话搜索结果，进而加入游戏会话
-	void JoinSession(const FOnlineSessionSearchResult& SessionSearchResult);
+	void JoinSession(const FOnlineSessionSearchResult& SessionResult);
 
 	// 销毁会话
 	void DestroySession();
@@ -81,6 +81,7 @@ protected:
 private:
 	IOnlineSessionPtr SessionInterface;		// 在线会话的智能指针
 	TSharedPtr<FOnlineSessionSettings> LastSessionSettings;  // 上一次会话设置
+	TSharedPtr<FOnlineSessionSearch> LastSessionSearch;		// 上一次会话搜索
 
 	// 添加到在线会话界面委托列表中
 	// 我们 MultiPlayerSessionSubsystem 内部的回调函数 将会对这些委托进行绑定

@@ -8,6 +8,19 @@
 
 #include "MultiplayerSessionSubsystem.generated.h"
 
+///
+/// 声明我们自己的自定义委托，用于将回调绑定到带单类（给菜单回传委托）
+///	可以创建一个动态多播委托，从此类广播一次
+///
+/// 下面这个委托是一个动态多播委托。
+///	 MULTICAST 多播的意思就是：一旦它被广播，多个类可以将他们的回调函数绑定到这个委托上
+///  DYNAMIC 动态的意思就是：意味着可以序列化委托，并且可以从一个蓝图内部保存或者加载这些委托
+///
+///	 一般被称呼为 事件调度程序
+///
+/// 声明一个能够绑定一个参数的多播函数
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMultiPlayerOnCreateSessionComplete, bool, bWasSuccessful);
+
 /**
  *
  */
@@ -40,6 +53,12 @@ public:
 
 	// 开始会话
 	void StartSession();
+
+	/// <summary>
+	/// 需要用我们自己的菜单类的自定义委托来绑定回调
+	/// </summary>
+	///	声明一个新的委托类型
+	FMultiPlayerOnCreateSessionComplete MultiPlayerOnCreateSessionComplete;
 
 protected:
 	// 将会被添加到在线会话接口委托列表里的内部回调函数

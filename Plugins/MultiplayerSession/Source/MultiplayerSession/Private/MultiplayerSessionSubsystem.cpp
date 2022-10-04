@@ -54,6 +54,9 @@ void UMultiplayerSessionSubsystem::CreateSession(int32 NumPublicConnections, FSt
 	{
 		// 会话创建失败，从委托列表中删除创建会话委托
 		SessionInterface->ClearOnCreateSessionCompleteDelegate_Handle(CreateSessionCompleteDelegateHandle);
+
+		// 广播我们自定义的委托， 这里我想将会话创建失败的消广播给菜单类
+		MultiPlayerOnCreateSessionComplete.Broadcast(false);
 	}
 }
 
@@ -75,6 +78,14 @@ void UMultiplayerSessionSubsystem::StartSession()
 
 void UMultiplayerSessionSubsystem::OnCreateSessionComplete(FName SessionName, bool bWasSuccessful)
 {
+	if (SessionInterface)
+	{
+		// 会话创建成功，那么就将创建会话完成的委托从委托列表中删除
+		SessionInterface->ClearOnCreateSessionCompleteDelegate_Handle(CreateSessionCompleteDelegateHandle);
+	}
+
+	// 广播这个委托，以便菜单类能够调用他的回调函数
+	MultiPlayerOnCreateSessionComplete.Broadcast(bWasSuccessful);
 }
 
 void UMultiplayerSessionSubsystem::OnFindSessionComplete(bool bWasSuccessful)

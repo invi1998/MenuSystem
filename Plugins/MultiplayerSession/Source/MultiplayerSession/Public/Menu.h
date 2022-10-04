@@ -24,6 +24,12 @@ protected:
 	// 在关卡从世界上被移除时就会被调用，即进行关卡（场景）切换
 	virtual void OnLevelRemovedFromWorld(ULevel* InLevel, UWorld* InWorld) override;
 
+	/// <summary>
+	/// 为多人会话子系统（MultiPlayerSessionSubsystem）里的自定义委托提供的 回调
+	/// </summary>
+	UFUNCTION()
+		void OnCreateSession(bool bWasSuccessful);
+
 private:
 
 	// 指定绑定小部件，这样做之后我们的蓝图上的按钮部件将会链接到c++中的按钮变量

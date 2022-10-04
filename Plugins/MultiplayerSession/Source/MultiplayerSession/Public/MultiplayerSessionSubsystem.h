@@ -21,7 +21,7 @@
 /// 声明一个能够绑定一个参数的多播函数
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMultiPlayerOnCreateSessionComplete, bool, bWasSuccessful);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FMultiPlayerOnFindSessionComplete, const TArray<FOnlineSessionSearchResult>& SessionResults, bool bWasSuccessful);
-DECLARE_MULTICAST_DELEGATE_OneParam(FMultiPlayerOnJoninSessionComplete, EOnJoinSessionCompleteResult::Type Result);
+DECLARE_MULTICAST_DELEGATE_OneParam(FMultiPlayerOnJoinSessionComplete, EOnJoinSessionCompleteResult::Type Result);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMultiPlayerOnDestroySessionComplete, bool, bWasSuccessful);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMultiPlayerOnStartSessionComplete, bool, bWasSuccessful);
 
@@ -64,7 +64,7 @@ public:
 	///	声明一个新的委托类型
 	FMultiPlayerOnCreateSessionComplete MultiPlayerOnCreateSessionComplete;
 	FMultiPlayerOnFindSessionComplete MultiPlayerOnFindSessionComplete;
-	FMultiPlayerOnJoninSessionComplete MultiPlayerOnJoninSessionComplete;
+	FMultiPlayerOnJoinSessionComplete MultiPlayerOnJoinSessionComplete;
 	FMultiPlayerOnDestroySessionComplete MultiPlayerOnDestroySessionComplete;
 	FMultiPlayerOnStartSessionComplete MultiPlayerOnStartSessionComplete;
 

@@ -92,7 +92,7 @@ void UMultiplayerSessionSubsystem::JoinSession(const FOnlineSessionSearchResult&
 {
 	if (!SessionInterface.IsValid())
 	{
-		MultiPlayerOnJoninSessionComplete.Broadcast(EOnJoinSessionCompleteResult::UnknownError);
+		MultiPlayerOnJoinSessionComplete.Broadcast(EOnJoinSessionCompleteResult::UnknownError);
 		return;
 	}
 
@@ -104,7 +104,7 @@ void UMultiplayerSessionSubsystem::JoinSession(const FOnlineSessionSearchResult&
 	{
 		// 会话加入失败， 清除委托，向菜单广播结果
 		SessionInterface->ClearOnJoinSessionCompleteDelegate_Handle(JoinSessionCompleteDelegateHandle);
-		MultiPlayerOnJoninSessionComplete.Broadcast(EOnJoinSessionCompleteResult::UnknownError);
+		MultiPlayerOnJoinSessionComplete.Broadcast(EOnJoinSessionCompleteResult::UnknownError);
 	}
 
 	// 会话加入成功，会进入到下面的 OnJoinSessionComplete
@@ -154,7 +154,7 @@ void UMultiplayerSessionSubsystem::OnJoinSessionComplete(FName SessionName, EOnJ
 		SessionInterface->ClearOnJoinSessionCompleteDelegate_Handle(JoinSessionCompleteDelegateHandle);
 	}
 
-	MultiPlayerOnJoninSessionComplete.Broadcast(Result);
+	MultiPlayerOnJoinSessionComplete.Broadcast(Result);
 	// 这里就会进入到 菜单类的 OnJoinSession
 }
 

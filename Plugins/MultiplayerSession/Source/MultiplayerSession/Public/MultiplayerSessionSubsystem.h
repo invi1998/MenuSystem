@@ -53,6 +53,7 @@ protected:
 
 private:
 	IOnlineSessionPtr SessionInterface;		// 在线会话的智能指针
+	TSharedPtr<FOnlineSessionSettings> LastSessionSettings;  // 上一次会话设置
 
 	// 添加到在线会话界面委托列表中
 	// 我们 MultiPlayerSessionSubsystem 内部的回调函数 将会对这些委托进行绑定

@@ -16,11 +16,13 @@ class MULTIPLAYERSESSION_API UMenu : public UUserWidget
 
 public:
 	UFUNCTION(BlueprintCallable)
-		void MenuSetup();
+		void MenuSetup(int32 NumberOfPublicConnections = 4, FString TypeOfMatch = FString(TEXT("FreeForAll")));
 
 protected:
 
 	virtual bool Initialize() override;
+	// 在关卡从世界上被移除时就会被调用，即进行关卡（场景）切换
+	virtual void OnLevelRemovedFromWorld(ULevel* InLevel, UWorld* InWorld) override;
 
 private:
 
@@ -38,6 +40,11 @@ private:
 	UFUNCTION()
 		void JoinButtonClicked();
 
+	void MenuTearDown();
+
 	// 处理所有在线会话功能的子系统
 	class UMultiplayerSessionSubsystem* MultiplayerSessionSubsystem;
+
+	int32 NumPublicConnections{ 4 };						// 会话允许连接的最大数量，默认4
+	FString MatchType{ TEXT("FreeForAll") };				// 匹配类型，默认 FreeForAll
 };

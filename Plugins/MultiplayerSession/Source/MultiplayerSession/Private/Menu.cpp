@@ -41,7 +41,7 @@ void UMenu::MenuSetup(int32 NumberOfPublicConnections, FString TypeOfMatch)
 	{
 		// 绑定自定义委托
 		MultiplayerSessionSubsystem->MultiPlayerOnCreateSessionComplete.AddDynamic(this, &ThisClass::OnCreateSession);
-		MultiplayerSessionSubsystem->MultiPlayerOnFindSessionComplete.AddUObject(this, &ThisClass::OnFindSession);
+		MultiplayerSessionSubsystem->MultiPlayerOnFindSessionsComplete.AddUObject(this, &ThisClass::OnFindSessions);
 		MultiplayerSessionSubsystem->MultiPlayerOnJoinSessionComplete.AddUObject(this, &ThisClass::OnJoinSession);
 		MultiplayerSessionSubsystem->MultiPlayerOnDestroySessionComplete.AddDynamic(this, &ThisClass::OnDestroySession);
 		MultiplayerSessionSubsystem->MultiPlayerOnStartSessionComplete.AddDynamic(this, &ThisClass::OnStartSession);
@@ -108,7 +108,7 @@ void UMenu::OnCreateSession(bool bWasSuccessful)
 	}
 }
 
-void UMenu::OnFindSession(const TArray<FOnlineSessionSearchResult>& SessionResults, bool bWasSuccessful)
+void UMenu::OnFindSessions(const TArray<FOnlineSessionSearchResult>& SessionResults, bool bWasSuccessful)
 {
 	if (MultiplayerSessionSubsystem == nullptr)
 	{
@@ -174,7 +174,7 @@ void UMenu::JoinButtonClicked()
 	// 查找会话 -> 加入会话
 	if (MultiplayerSessionSubsystem)
 	{
-		MultiplayerSessionSubsystem->FindSession(10000);
+		MultiplayerSessionSubsystem->FindSessions(10000);
 	}
 }
 

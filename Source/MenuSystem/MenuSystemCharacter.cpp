@@ -15,7 +15,7 @@
 
 AMenuSystemCharacter::AMenuSystemCharacter() :
 	CreateSessionCompleteDelegate(FOnCreateSessionCompleteDelegate::CreateUObject(this, &ThisClass::OnCreateSessionComplete)),
-	FindSessionsCompleteDelegate(FOnFindSessionsCompleteDelegate::CreateUObject(this, &ThisClass::OnFindSessionComplete)),
+	FindSessionsCompleteDelegate(FOnFindSessionsCompleteDelegate::CreateUObject(this, &ThisClass::OnFindSessionsComplete)),
 	JoinSessionCompleteDelegate(FOnJoinSessionCompleteDelegate::CreateUObject(this, &ThisClass::OnJoinSessionComplete))
 {
 	// Set size for collision capsule
@@ -195,7 +195,7 @@ void AMenuSystemCharacter::OnCreateSessionComplete(FName SessionName, bool bWasS
 	}
 }
 
-void AMenuSystemCharacter::OnFindSessionComplete(bool bWasSuccessful)
+void AMenuSystemCharacter::OnFindSessionsComplete(bool bWasSuccessful)
 {
 	// 这个函数调用将会响应会话接口发送的委托广播（查找会话完成后）
 

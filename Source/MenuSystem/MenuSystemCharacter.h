@@ -77,7 +77,7 @@ protected:
 	// 响应成功创建游戏回话而调用的回调函数
 	void OnCreateSessionComplete(FName SessionName, bool bWasSuccessful);
 
-	void OnFindSessionComplete(bool bWasSuccessful);
+	void OnFindSessionsComplete(bool bWasSuccessful);
 
 	void OnJoinSessionComplete(FName SessionName, EOnJoinSessionCompleteResult::Type Result);
 

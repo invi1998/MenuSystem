@@ -20,7 +20,7 @@
 ///
 /// 声明一个能够绑定一个参数的多播函数
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMultiPlayerOnCreateSessionComplete, bool, bWasSuccessful);
-DECLARE_MULTICAST_DELEGATE_TwoParams(FMultiPlayerOnFindSessionComplete, const TArray<FOnlineSessionSearchResult>& SessionResults, bool bWasSuccessful);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FMultiPlayerOnFindSessionsComplete, const TArray<FOnlineSessionSearchResult>& SessionResults, bool bWasSuccessful);
 DECLARE_MULTICAST_DELEGATE_OneParam(FMultiPlayerOnJoinSessionComplete, EOnJoinSessionCompleteResult::Type Result);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMultiPlayerOnDestroySessionComplete, bool, bWasSuccessful);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMultiPlayerOnStartSessionComplete, bool, bWasSuccessful);
@@ -47,7 +47,7 @@ public:
 	 * @brief 查找会话
 	 * @param MaxSearchResults 指定要搜索的结果数量
 	 */
-	void FindSession(int32 MaxSearchResults);
+	void FindSessions(int32 MaxSearchResults);
 
 	// 传入要加入的会话搜索结果，进而加入游戏会话
 	void JoinSession(const FOnlineSessionSearchResult& SessionResult);
@@ -63,7 +63,7 @@ public:
 	/// </summary>
 	///	声明一个新的委托类型
 	FMultiPlayerOnCreateSessionComplete MultiPlayerOnCreateSessionComplete;
-	FMultiPlayerOnFindSessionComplete MultiPlayerOnFindSessionComplete;
+	FMultiPlayerOnFindSessionsComplete MultiPlayerOnFindSessionsComplete;
 	FMultiPlayerOnJoinSessionComplete MultiPlayerOnJoinSessionComplete;
 	FMultiPlayerOnDestroySessionComplete MultiPlayerOnDestroySessionComplete;
 	FMultiPlayerOnStartSessionComplete MultiPlayerOnStartSessionComplete;
@@ -73,7 +73,7 @@ protected:
 	// 不需要在这个类外进行调用
 
 	void OnCreateSessionComplete(FName SessionName, bool bWasSuccessful);
-	void OnFindSessionComplete(bool bWasSuccessful);
+	void OnFindSessionsComplete(bool bWasSuccessful);
 	void OnJoinSessionComplete(FName SessionName, EOnJoinSessionCompleteResult::Type Result);
 	void OnDestroySessionComplete(FName SessionName, bool bWasSuccessful);
 	void OnStartSessionComplete(FName SessionName, bool bWasSuccessful);

@@ -96,4 +96,8 @@ private:
 	FDelegateHandle DestroySessionCompleteDelegateHandle;
 	FOnStartSessionCompleteDelegate StartSessionCompleteDelegate;			// 开始会话完成委托
 	FDelegateHandle StartSessionCompleteDelegateHandle;
+
+	bool bCreateSessionOnDestroy{ false };		// 当会话被销毁时，我们将检测这个变量，如果是true，我们将创建一个新的会话
+	int32 LastNumPublicConnections;
+	FString LastMatchType;
 };
